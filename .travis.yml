@@ -13,8 +13,10 @@ after_success:
   - docker build -t raulla/multi-nginx ./nginx
   - docker build -t raulla/multi-server ./server
   - docker build -t raulla/multi-worker ./worker
+
   #docker-login
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  
   #publish 
   - docker push raulla/multi-client
   - docker push raulla/multi-nginx
