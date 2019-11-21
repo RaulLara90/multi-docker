@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { type } from 'os';
 
 class Fib extends Component {
   state = {
@@ -35,6 +36,9 @@ class Fib extends Component {
   };
 
   renderSeenIndexes() {
+    if(this.state.seenIndexes instanceof String){
+      return "";
+    }
     return this.state.seenIndexes.map(({ number }) => number).join(', ');
   }
 
