@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { type } from 'os';
 
 class Fib extends Component {
   state = {
@@ -21,6 +20,12 @@ class Fib extends Component {
 
   async fetchIndexes() {
     const seenIndexes = await axios.get('/api/values/all');
+
+    if(!Array.isArray(seenIndexes.data)){
+      console.log("array")
+      return; 
+    } 
+
     this.setState({
       seenIndexes: seenIndexes.data
     });
@@ -36,9 +41,7 @@ class Fib extends Component {
   };
 
   renderSeenIndexes() {
-    if(this.state.seenIndexes instanceof String){
-      return "";
-    }
+    
     return this.state.seenIndexes.map(({ number }) => number).join(', ');
   }
 
